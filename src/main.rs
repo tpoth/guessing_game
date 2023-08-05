@@ -9,21 +9,23 @@ fn main() {
 
     println!("Die Geheimzahl ist: {secret_number}");
 
-    println!("Bitte gib Deine Schätzung ein.");
+    loop {
+        println!("Bitte gib Deine Schätzung ein.");
 
-    let mut guess = String::new();
+        let mut guess = String::new();
 
-    io::stdin()
-        .read_line(&mut guess)
-        .expect("Fehler beim Lesen der Deiner Eingab!");
+        io::stdin()
+            .read_line(&mut guess)
+            .expect("Fehler beim Lesen der Deiner Eingab!");
 
-    let guess: u32 = guess.trim().parse().expect("Bitte gib eine Zahl ein!");
-    
-    println!("Du hast geschätzt: {guess}");
+        let guess: u32 = guess.trim().parse().expect("Bitte gib eine Zahl ein!");
 
-    match guess.cmp(&secret_number) {
-        Ordering::Less => println!("Zu klein!"),
-        Ordering::Greater => println!("Zu groß!"),
-        Ordering::Equal => print!("Du hast gewonnen!"),
+        println!("Du hast geschätzt: {guess}");
+
+        match guess.cmp(&secret_number) {
+            Ordering::Less => println!("Zu klein!"),
+            Ordering::Greater => println!("Zu groß!"),
+            Ordering::Equal => println!("Du hast gewonnen!"),
+        }
     }
 }
